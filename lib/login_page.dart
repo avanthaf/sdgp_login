@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdgp_login/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -36,24 +37,12 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 25),
 
               //Username
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 252, 1, 1)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 212, 219, 16)),
-                    ),
-                    labelText: 'Enter your username',
-                  ),
-                ),
-              )
+              MyTextField(),
+
+              SizedBox(height: 25),
 
               // password
+              MyTextField(),
 
               //login button
 
