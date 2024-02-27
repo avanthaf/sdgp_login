@@ -2,34 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
 
               //Name
-              Text(
+              const Text(
                 "WasteWisdom Pro",
                 style: TextStyle(color: Colors.black, fontSize: 25),
               ),
 
               //WasteWisdom Pro icon
-              Icon(
+              const Icon(
                 Icons.recycling_outlined,
                 size: 100,
               ),
 
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
 
               //Welcome note
-              Text(
+              const Text(
                 "Welcome Back!",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
@@ -37,13 +40,27 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 25),
 
               //Username
-              MyTextField(),
+              MyTextField(
+                controller: usernameController,
+                hintText: "Email Address",
+                obscureText: false,
+              ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // password
-              MyTextField(),
+              MyTextField(
+                controller: passwordController,
+                obscureText: true,
+                hintText: "Password",
+              ),
 
+              const SizedBox(height: 15),
+
+              //Forgot password
+              const Text("Forgot Password?"),
+
+              const SizedBox(height: 25),
               //login button
 
               //sign up button
