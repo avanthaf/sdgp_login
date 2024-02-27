@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
@@ -61,7 +62,9 @@ class LoginPage extends StatelessWidget {
               const Text("Forgot Password?"),
 
               const SizedBox(height: 25),
+
               //login button
+              MyButton(),
 
               //sign up button
             ],
