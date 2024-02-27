@@ -1,27 +1,67 @@
 import 'package:flutter/material.dart';
 
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
-  @override
-  State<loginPage> createState() => _loginPageState();
-}
-
-class _loginPageState extends State<loginPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white,
-        child: const Column(children: [
-          Row(children: [Text("Waste Wisdom Pro")]),
-          Row(children: [Text("Logo")]),
-          Row(children: [Text("Username")]),
-          Row(children: [Text("Username")]),
-          Row(children: [Text("Password")]),
-          Row(children: [Text("Password")]),
-          Row(children: [Text("Login")]),
-          Row(children: [Text("New to the app?")]),
-          Row(children: [Text("Sign up for free")]),
-        ]));
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: const SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 50),
+
+              //Name
+              Text(
+                "WasteWisdom Pro",
+                style: TextStyle(color: Colors.black, fontSize: 25),
+              ),
+
+              //WasteWisdom Pro icon
+              Icon(
+                Icons.recycling_outlined,
+                size: 100,
+              ),
+
+              SizedBox(height: 50),
+
+              //Welcome note
+              Text(
+                "Welcome Back!",
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+
+              SizedBox(height: 25),
+
+              //Username
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 252, 1, 1)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 212, 219, 16)),
+                    ),
+                    labelText: 'Enter your username',
+                  ),
+                ),
+              )
+
+              // password
+
+              //login button
+
+              //sign up button
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
