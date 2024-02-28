@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
+import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,65 +9,77 @@ class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
+  void LoginUser() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: Center(
+      backgroundColor: Colors.green[200],
+      body: Center(
+        child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
-
-              //Name
+              //  Company name, logo and Welcome note
+              const MySizedBox(BoxHeight: 5),
               const Text(
                 "WasteWisdom Pro",
-                style: TextStyle(color: Colors.black, fontSize: 25),
+                style: TextStyle(color: Colors.black, fontSize: 30),
               ),
-
-              //WasteWisdom Pro icon
+              const MySizedBox(BoxHeight: 1),
               const Icon(
                 Icons.recycling_outlined,
-                size: 100,
+                size: 150,
               ),
 
-              const SizedBox(height: 50),
-
-              //Welcome note
+              const MySizedBox(BoxHeight: 5),
               const Text(
                 "Welcome Back!",
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                textAlign: TextAlign.right,
+                style: TextStyle(color: Colors.black, fontSize: 20),
               ),
 
-              SizedBox(height: 25),
-
-              //Username
+              // Username text field
+              const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: usernameController,
                 hintText: "Email Address",
                 obscureText: false,
               ),
 
-              const SizedBox(height: 25),
-
-              // password
+              // Password Text field
+              const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: passwordController,
                 obscureText: true,
                 hintText: "Password",
               ),
 
-              const SizedBox(height: 15),
-
-              //Forgot password
+              // Forgot Password Text
+              const MySizedBox(BoxHeight: 1),
               const Text("Forgot Password?"),
 
-              const SizedBox(height: 25),
+              // Login Button
+              const MySizedBox(BoxHeight: 4),
+              MyButton(
+                onTap: LoginUser,
+              ),
 
-              //login button
-              MyButton(),
-
-              //sign up button
+              // Sign up Text field
+              const MySizedBox(BoxHeight: 2),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("New to the app?"),
+                  SizedBox(width: 5),
+                  Text(
+                    "Sign up for free",
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              const MySizedBox(BoxHeight: 5),
             ],
           ),
         ),
