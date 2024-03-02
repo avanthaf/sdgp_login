@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
+import 'package:sdgp_login/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -67,22 +70,31 @@ class LoginPage extends StatelessWidget {
 
               // Sign up Text field
               const MySizedBox(BoxHeight: 2),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("New to the app?"),
                   SizedBox(width: 5),
-                  Text(
-                    "Sign up for free",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  ),
+                  newGesture(context),
                 ],
               ),
               const MySizedBox(BoxHeight: 5),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  GestureDetector newGesture(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignupPage()));
+      },
+      child: const Text(
+        "Sign up for free",
+        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
       ),
     );
   }

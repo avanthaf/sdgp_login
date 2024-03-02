@@ -5,6 +5,24 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Sign up"),
+        backgroundColor: Colors.yellow,
+      ),
+      backgroundColor: Colors.yellow,
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.badge_sharp,
+            size: 150,
+          ),
+        ),
+      ),
+    );
   }
 }
