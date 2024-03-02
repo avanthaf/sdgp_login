@@ -31,7 +31,7 @@ class SignupPage extends StatelessWidget {
                 "WasteWisdom Pro",
                 style: TextStyle(color: Colors.black, fontSize: 30),
               ),
-
+              const MySizedBox(BoxHeight: 1),
               const Icon(
                 Icons.recycling_outlined,
                 size: 100,
