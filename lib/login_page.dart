@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //  Company name, logo and Welcome note
-              const MySizedBox(BoxHeight: 5),
+              const MySizedBox(BoxHeight: 4),
               const Text(
                 "WasteWisdom Pro",
                 style: TextStyle(color: Colors.black, fontSize: 30),
