@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
+import 'package:sdgp_login/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -21,12 +24,12 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //  Company name, logo and Welcome note
-              const MySizedBox(BoxHeight: 4),
+              const MySizedBox(BoxHeight: 5),
               const Text(
                 "WasteWisdom Pro",
                 style: TextStyle(color: Colors.black, fontSize: 30),
               ),
-              const MySizedBox(BoxHeight: 1),
+              const MySizedBox(BoxHeight: 2),
               const Icon(
                 Icons.recycling_outlined,
                 size: 150,
@@ -51,8 +54,8 @@ class LoginPage extends StatelessWidget {
               const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: passwordController,
-                obscureText: true,
                 hintText: "Password",
+                obscureText: true,
               ),
 
               // Forgot Password Text
@@ -63,26 +66,36 @@ class LoginPage extends StatelessWidget {
               const MySizedBox(BoxHeight: 4),
               MyButton(
                 onTap: LoginUser,
+                ButtonText: "Login",
               ),
 
               // Sign up Text field
               const MySizedBox(BoxHeight: 2),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("New to the app?"),
-                  SizedBox(width: 5),
-                  Text(
-                    "Sign up for free",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  ),
+                  const Text("New to the app?"),
+                  const SizedBox(width: 5),
+                  newGesture(context),
                 ],
               ),
               const MySizedBox(BoxHeight: 5),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  GestureDetector newGesture(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignupPage()));
+      },
+      child: const Text(
+        "Sign up for free",
+        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
       ),
     );
   }
