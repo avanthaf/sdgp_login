@@ -54,8 +54,8 @@ class LoginPage extends StatelessWidget {
               const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: passwordController,
-                obscureText: true,
                 hintText: "Password",
+                obscureText: true,
               ),
 
               // Forgot Password Text
@@ -73,8 +73,8 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("New to the app?"),
-                  SizedBox(width: 5),
+                  const Text("New to the app?"),
+                  const SizedBox(width: 5),
                   newGesture(context),
                 ],
               ),
