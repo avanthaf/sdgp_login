@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,12 +9,23 @@ import 'package:sdgp_login/components/my_textfield.dart';
 import 'package:sdgp_login/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginPage({Key? key}) : super(key: key);
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void LoginUser() {}
+  void LoginUser() {
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    if (username == "avantha") {
+      print("Username: $username");
+    } else {
+      print("Wrong username");
+    }
+
+    print("Password: $password");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +78,7 @@ class LoginPage extends StatelessWidget {
               // Login Button
               const MySizedBox(BoxHeight: 4),
               MyButton(
-                onTap: LoginUser,
+                onTap: () => LoginUser(),
                 ButtonText: "Login",
               ),
 

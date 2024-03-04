@@ -24,7 +24,7 @@ class MyButton extends StatelessWidget {
               fontSize: 25,
               fontStyle: FontStyle.normal,
             )),
-        onPressed: () {},
+        onPressed: onTap,
         child: Text(ButtonText),
       ),
     );
