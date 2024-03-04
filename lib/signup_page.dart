@@ -10,7 +10,17 @@ class SignupPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void RegisterUser() {}
+  void RegisterUser() {
+    String firstname = firstnameController.text;
+    String lastname = lastnameController.text;
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    print("firstname: $firstname");
+    print("lastname: $lastname");
+    print("username: $username");
+    print("password: $password");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +78,8 @@ class SignupPage extends StatelessWidget {
 
               const MySizedBox(BoxHeight: 4),
               MyButton(
-                onTap: RegisterUser,
-                ButtonText: "Sign up",
+                onTap: () => RegisterUser(),
+                ButtonText: "SIgn up",
               ),
             ],
           ),
