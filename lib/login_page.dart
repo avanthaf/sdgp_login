@@ -5,24 +5,30 @@ import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'package:sdgp_login/signup_page.dart';
+import 'package:sdgp_login/database/login_database.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  final dbHelper = DatabaseHelper();
 
-  void LoginUser() {
+  Future<void> LoginUser() async {
+    await dbHelper.connect();
+
     String username = usernameController.text;
     String password = passwordController.text;
 
-    if (username == "avantha") {
-      print("Username: $username");
+    bool isLoggedIn = await dbHelper.login(username, password);
+
+    if (isLoggedIn) {
+      print('Login successful');
     } else {
-      print("Wrong username");
+      print('Login failed');
     }
 
-    print("Password: $password");
+    await dbHelper.close();
   }
 
   @override
