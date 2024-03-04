@@ -2,24 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
+import 'package:sdgp_login/database/login_database.dart';
 
 class SignupPage extends StatelessWidget {
-  SignupPage({super.key});
+  SignupPage({Key? key}) : super(key: key);
+
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void RegisterUser() {
-    String firstname = firstnameController.text;
-    String lastname = lastnameController.text;
+  final dbHelper = DatabaseHelper();
+
+  Future<void> registerUser() async {
+    await dbHelper.connect();
+
+    String firstName = firstnameController.text;
+    String lastName = lastnameController.text;
     String username = usernameController.text;
     String password = passwordController.text;
 
-    print("firstname: $firstname");
-    print("lastname: $lastname");
-    print("username: $username");
-    print("password: $password");
+    await DatabaseHelper()
+        .registerUser(firstName, lastName, username, password);
+
+    print('User registered successfully');
+
+    await dbHelper.close();
   }
 
   @override
@@ -78,8 +86,8 @@ class SignupPage extends StatelessWidget {
 
               const MySizedBox(BoxHeight: 4),
               MyButton(
-                onTap: () => RegisterUser(),
-                ButtonText: "SIgn up",
+                onTap: () => registerUser(),
+                ButtonText: "Sign up",
               ),
             ],
           ),
