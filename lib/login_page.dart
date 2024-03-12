@@ -75,11 +75,17 @@ class LoginPage extends StatelessWidget {
   }
 
   void loginUser() async {
-    var url = Uri.parse('http://localhost:8080/v1/user/login');
-    var response = await http.post(url, body: {
-      'email': usernameController.text,
-      'password': passwordController.text,
-    });
+    var url = Uri.parse('http://10.0.2.2:8080/v1/user/login');
+    var response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json', // Set the content type here
+      },
+      body: jsonEncode({
+        'email': usernameController.text,
+        'password': passwordController.text,
+      }),
+    );
 
     if (response.statusCode == 200) {
       // Login successful
@@ -89,6 +95,22 @@ class LoginPage extends StatelessWidget {
       // Handle the error (e.g., show an error message)
     }
   }
+
+  // void loginUser() async {
+  //   var url = Uri.parse('http://10.0.2.2:8080/v1/user/login');
+  //   var response = await http.post(url, body: {
+  //     'email': usernameController.text,
+  //     'password': passwordController.text,
+  //   });
+
+  //   if (response.statusCode == 200) {
+  //     // Login successful
+  //     // Navigate to the home page or show a success message
+  //   } else {
+  //     // Login failed
+  //     // Handle the error (e.g., show an error message)
+  //   }
+  // }
 
   GestureDetector newGesture(BuildContext context) {
     return GestureDetector(

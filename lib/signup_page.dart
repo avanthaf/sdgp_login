@@ -70,13 +70,19 @@ class SignupPage extends StatelessWidget {
   }
 
   void registerUser() async {
-    var url = Uri.parse('http://localhost:8080/v1/user/register');
-    var response = await http.post(url, body: {
-      'firstName': firstnameController.text,
-      'lastName': lastnameController.text,
-      'email': usernameController.text,
-      'password': passwordController.text,
-    });
+    var url = Uri.parse('http://10.0.2.2:8080/v1/user/register');
+    var response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json', // Set the content type here
+      },
+      body: jsonEncode({
+        'firstName': firstnameController.text,
+        'lastName': lastnameController.text,
+        'email': usernameController.text,
+        'password': passwordController.text,
+      }),
+    );
 
     if (response.statusCode == 200) {
       // Registration successful
@@ -86,4 +92,22 @@ class SignupPage extends StatelessWidget {
       // Show error message
     }
   }
+
+  // void registerUser() async {
+  //   var url = Uri.parse('http://10.0.2.2:8080/v1/user/register');
+  //   var response = await http.post(url, body: {
+  //     'firstName': firstnameController.text,
+  //     'lastName': lastnameController.text,
+  //     'email': usernameController.text,
+  //     'password': passwordController.text,
+  //   });
+
+  //   if (response.statusCode == 200) {
+  //     // Registration successful
+  //     // Navigate to the login page or show a success message
+  //   } else {
+  //     // Registration failed
+  //     // Show error message
+  //   }
+  // }
 }
