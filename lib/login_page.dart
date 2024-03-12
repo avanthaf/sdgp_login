@@ -4,6 +4,8 @@ import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'package:sdgp_login/signup_page.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -72,8 +74,20 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void loginUser() {
-    // Implement user login logic here
+  void loginUser() async {
+    var url = Uri.parse('http://localhost:8080/v1/user/login');
+    var response = await http.post(url, body: {
+      'email': usernameController.text,
+      'password': passwordController.text,
+    });
+
+    if (response.statusCode == 200) {
+      // Login successful
+      // Navigate to the home page or show a success message
+    } else {
+      // Login failed
+      // Handle the error (e.g., show an error message)
+    }
   }
 
   GestureDetector newGesture(BuildContext context) {

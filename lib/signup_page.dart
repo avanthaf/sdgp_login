@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -67,7 +69,21 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  void registerUser() {
-    // Implement user registration logic here
+  void registerUser() async {
+    var url = Uri.parse('http://localhost:8080/v1/user/register');
+    var response = await http.post(url, body: {
+      'firstName': firstnameController.text,
+      'lastName': lastnameController.text,
+      'email': usernameController.text,
+      'password': passwordController.text,
+    });
+
+    if (response.statusCode == 200) {
+      // Registration successful
+      // Navigate to the login page or show a success message
+    } else {
+      // Registration failed
+      // Show error message
+    }
   }
 }
