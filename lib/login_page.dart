@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
@@ -106,14 +107,40 @@ class LoginPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
-      print("Login successful");
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login failed. Please check your email and password.'),
-          duration: Duration(seconds: 3),
+      final materialBanner = MaterialBanner(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        forceActionsBelow: true,
+        content: AwesomeSnackbarContent(
+          title: 'Login Successful',
+          message: 'Welcome back! You have successfully logged in.',
+          contentType: ContentType.success,
+          inMaterialBanner: true,
         ),
+        actions: const [SizedBox.shrink()],
       );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentMaterialBanner()
+        ..showMaterialBanner(materialBanner);
+    } else {
+      final materialBanner = MaterialBanner(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        forceActionsBelow: true,
+        content: AwesomeSnackbarContent(
+          title: 'Authentication Error',
+          message:
+              'Invalid username or password. Please verify your login details and try again!',
+          contentType: ContentType.failure,
+          inMaterialBanner: true,
+        ),
+        actions: const [SizedBox.shrink()],
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentMaterialBanner()
+        ..showMaterialBanner(materialBanner);
     }
   }
 }
