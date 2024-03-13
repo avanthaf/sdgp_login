@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
+import 'package:sdgp_login/components/my_gestureDetector.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
+import 'package:sdgp_login/pwrest_page.dart';
 import 'package:sdgp_login/signup_page.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -51,7 +53,15 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
               ),
               const MySizedBox(BoxHeight: 1),
-              const Text("Forgot Password?"),
+              MyGestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PWRestPage()),
+                  );
+                },
+                text: "Forgot Password?",
+              ),
               const MySizedBox(BoxHeight: 4),
               MyButton(
                 onTap: loginUser,
@@ -63,7 +73,15 @@ class LoginPage extends StatelessWidget {
                 children: [
                   const Text("New to the app?"),
                   const SizedBox(width: 5),
-                  newGesture(context),
+                  MyGestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupPage()),
+                      );
+                    },
+                    text: "Sign up for free",
+                  ),
                 ],
               ),
               const MySizedBox(BoxHeight: 5),
@@ -79,7 +97,7 @@ class LoginPage extends StatelessWidget {
     var response = await http.post(
       url,
       headers: {
-        'Content-Type': 'application/json', // Set the content type here
+        'Content-Type': 'application/json',
       },
       body: jsonEncode({
         'email': emailController.text,
@@ -88,24 +106,9 @@ class LoginPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
-      // Login successful
-      // Navigate to the home page or show a success message
+      print("Login successful");
     } else {
-      // Login failed
-      // Handle the error (e.g., show an error message)
+      print("Login failed");
     }
-  }
-
-  GestureDetector newGesture(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignupPage()));
-      },
-      child: const Text(
-        "Sign up for free",
-        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-      ),
-    );
   }
 }
