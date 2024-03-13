@@ -64,7 +64,7 @@ class LoginPage extends StatelessWidget {
               ),
               const MySizedBox(BoxHeight: 4),
               MyButton(
-                onTap: loginUser,
+                onTap: () => loginUser(context),
                 ButtonText: "Login",
               ),
               const MySizedBox(BoxHeight: 2),
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void loginUser() async {
+  void loginUser(BuildContext context) async {
     var url = Uri.parse('http://10.0.2.2:8080/v1/user/login');
     var response = await http.post(
       url,
@@ -108,7 +108,12 @@ class LoginPage extends StatelessWidget {
     if (response.statusCode == 200) {
       print("Login successful");
     } else {
-      print("Login failed");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login failed. Please check your email and password.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
   }
 }
