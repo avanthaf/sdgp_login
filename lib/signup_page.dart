@@ -122,7 +122,7 @@ class SignupPage extends StatelessWidget {
         context,
         title: 'Registration Failed',
         message: 'Unable to complete registration. Please try again later.',
-        contentType: ContentType.success,
+        contentType: ContentType.failure,
       );
     }
   }
