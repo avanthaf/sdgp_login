@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_gestureDetector.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
+import 'package:sdgp_login/components/my_snackbar.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'package:sdgp_login/pwrest_page.dart';
 import 'package:sdgp_login/signup_page.dart';
@@ -107,40 +108,28 @@ class LoginPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
-      final materialBanner = MaterialBanner(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        forceActionsBelow: true,
-        content: AwesomeSnackbarContent(
-          title: 'Login Successful',
-          message: 'Welcome back! You have successfully logged in.',
-          contentType: ContentType.success,
-          inMaterialBanner: true,
-        ),
-        actions: const [SizedBox.shrink()],
+      SnackbarHelper.showSnackbar(
+        context,
+        title: 'Login Successful',
+        message: 'Welcome back! You have successfully logged in.',
+        contentType: ContentType.success,
       );
-
-      ScaffoldMessenger.of(context)
-        ..hideCurrentMaterialBanner()
-        ..showMaterialBanner(materialBanner);
+    } else if (response.statusCode == 401) {
+      SnackbarHelper.showSnackbar(
+        context,
+        title: 'Authentication Error',
+        message:
+            'Invalid username or password. Please verify your login details and try again!',
+        contentType: ContentType.warning,
+      );
     } else {
-      final materialBanner = MaterialBanner(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        forceActionsBelow: true,
-        content: AwesomeSnackbarContent(
-          title: 'Authentication Error',
-          message:
-              'Invalid username or password. Please verify your login details and try again!',
-          contentType: ContentType.failure,
-          inMaterialBanner: true,
-        ),
-        actions: const [SizedBox.shrink()],
+      SnackbarHelper.showSnackbar(
+        context,
+        title: 'Authentication Error',
+        message:
+            'An unexpected error occurred. Please contact the administrator .',
+        contentType: ContentType.failure,
       );
-
-      ScaffoldMessenger.of(context)
-        ..hideCurrentMaterialBanner()
-        ..showMaterialBanner(materialBanner);
     }
   }
 }

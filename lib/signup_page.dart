@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
+import 'package:sdgp_login/components/my_snackbar.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -80,7 +84,7 @@ class SignupPage extends StatelessWidget {
               ),
               const MySizedBox(BoxHeight: 4),
               MyButton(
-                onTap: registerUser,
+                onTap: () => registerUser(context),
                 ButtonText: "Create Account",
               ),
             ],
@@ -90,7 +94,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  void registerUser() async {
+  void registerUser(BuildContext context) async {
     var url = Uri.parse('http://10.0.2.2:8080/v1/user/register');
     var response = await http.post(
       url,
@@ -109,11 +113,19 @@ class SignupPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
-      // Registration successful
-      // Navigate to the login page or show a success message
+      SnackbarHelper.showSnackbar(
+        context,
+        title: 'Welcome Aboard!',
+        message: 'Thank you for signing up. Start exploring our app now!',
+        contentType: ContentType.success,
+      );
     } else {
-      // Registration failed
-      // Show error message
+      SnackbarHelper.showSnackbar(
+        context,
+        title: 'Registration Failed',
+        message: 'Unable to complete registration. Please try again later.',
+        contentType: ContentType.success,
+      );
     }
   }
 }
