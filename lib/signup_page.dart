@@ -10,8 +10,11 @@ class SignupPage extends StatelessWidget {
 
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final contactController = TextEditingController();
+  final addressController = TextEditingController();
+  final cityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class SignupPage extends StatelessWidget {
               const MySizedBox(BoxHeight: 1),
               const Icon(
                 Icons.recycling_outlined,
-                size: 100,
+                size: 80,
               ),
               const MySizedBox(BoxHeight: 5),
               MyTextField(
@@ -48,13 +51,31 @@ class SignupPage extends StatelessWidget {
                   obscureText: false),
               const MySizedBox(BoxHeight: 1),
               MyTextField(
-                  controller: usernameController,
+                  controller: emailController,
                   hintText: "Email",
                   obscureText: false),
               const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: passwordController,
                 hintText: "Password",
+                obscureText: true,
+              ),
+              const MySizedBox(BoxHeight: 1),
+              MyTextField(
+                controller: contactController,
+                hintText: "Contact Number",
+                obscureText: true,
+              ),
+              const MySizedBox(BoxHeight: 1),
+              MyTextField(
+                controller: addressController,
+                hintText: "Address",
+                obscureText: true,
+              ),
+              const MySizedBox(BoxHeight: 1),
+              MyTextField(
+                controller: cityController,
+                hintText: "City",
                 obscureText: true,
               ),
               const MySizedBox(BoxHeight: 4),
@@ -79,8 +100,11 @@ class SignupPage extends StatelessWidget {
       body: jsonEncode({
         'firstName': firstnameController.text,
         'lastName': lastnameController.text,
-        'email': usernameController.text,
+        'email': emailController.text,
         'password': passwordController.text,
+        'contact': contactController.text,
+        'address': addressController.text,
+        'city': cityController.text,
       }),
     );
 
@@ -92,22 +116,4 @@ class SignupPage extends StatelessWidget {
       // Show error message
     }
   }
-
-  // void registerUser() async {
-  //   var url = Uri.parse('http://10.0.2.2:8080/v1/user/register');
-  //   var response = await http.post(url, body: {
-  //     'firstName': firstnameController.text,
-  //     'lastName': lastnameController.text,
-  //     'email': usernameController.text,
-  //     'password': passwordController.text,
-  //   });
-
-  //   if (response.statusCode == 200) {
-  //     // Registration successful
-  //     // Navigate to the login page or show a success message
-  //   } else {
-  //     // Registration failed
-  //     // Show error message
-  //   }
-  // }
 }
