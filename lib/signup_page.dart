@@ -6,6 +6,7 @@ import 'package:sdgp_login/components/my_snackbar.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sdgp_login/login_page.dart';
 
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -111,6 +112,10 @@ class SignupPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
       SnackbarHelper.showSnackbar(
         context,
         title: 'Welcome Aboard!',
