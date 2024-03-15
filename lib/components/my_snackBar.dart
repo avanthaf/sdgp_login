@@ -7,6 +7,7 @@ class SnackbarHelper {
     required String title,
     required String message,
     required ContentType contentType,
+    int durationInSeconds = 5,
   }) {
     final materialBanner = MaterialBanner(
       elevation: 0,
@@ -21,8 +22,12 @@ class SnackbarHelper {
       actions: const [SizedBox.shrink()],
     );
 
-    ScaffoldMessenger.of(context)
-      ..hideCurrentMaterialBanner()
-      ..showMaterialBanner(materialBanner);
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.hideCurrentMaterialBanner();
+    messenger.showMaterialBanner(materialBanner);
+
+    Future.delayed(Duration(seconds: durationInSeconds), () {
+      messenger.hideCurrentMaterialBanner();
+    });
   }
 }
