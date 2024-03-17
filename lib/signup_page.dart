@@ -67,19 +67,19 @@ class SignupPage extends StatelessWidget {
               MyTextField(
                 controller: contactController,
                 hintText: "Contact Number",
-                obscureText: true,
+                obscureText: false,
               ),
               const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: addressController,
                 hintText: "Address",
-                obscureText: true,
+                obscureText: false,
               ),
               const MySizedBox(BoxHeight: 1),
               MyTextField(
                 controller: cityController,
                 hintText: "City",
-                obscureText: true,
+                obscureText: false,
               ),
               const MySizedBox(BoxHeight: 4),
               MyButton(
