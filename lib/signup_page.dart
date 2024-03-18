@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
 import 'package:sdgp_login/components/my_sizedbox.dart';
@@ -120,14 +119,12 @@ class SignupPage extends StatelessWidget {
         context,
         title: 'Welcome Aboard!',
         message: 'Thank you for signing up. Start exploring our app now!',
-        contentType: ContentType.success,
       );
     } else {
       SnackbarHelper.showSnackbar(
         context,
         title: 'Registration Failed',
         message: 'Unable to complete registration. Please try again later.',
-        contentType: ContentType.failure,
       );
     }
   }

@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sdgp_login/components/my_button.dart';
@@ -117,7 +116,6 @@ class LoginPage extends StatelessWidget {
         context,
         title: 'Login Successful',
         message: 'Welcome back! You have successfully logged in.',
-        contentType: ContentType.success,
       );
     } else if (response.statusCode == 401) {
       SnackbarHelper.showSnackbar(
@@ -125,7 +123,6 @@ class LoginPage extends StatelessWidget {
         title: 'Authentication Error',
         message:
             'Invalid username or password. Please verify your login details and try again!',
-        contentType: ContentType.warning,
       );
     } else {
       SnackbarHelper.showSnackbar(
@@ -133,7 +130,6 @@ class LoginPage extends StatelessWidget {
         title: 'Authentication Error',
         message:
             'An unexpected error occurred. Please contact the administrator .',
-        contentType: ContentType.failure,
       );
     }
   }
