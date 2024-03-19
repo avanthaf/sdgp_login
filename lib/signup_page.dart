@@ -97,7 +97,7 @@ class SignupPage extends StatelessWidget {
     var response = await http.post(
       url,
       headers: {
-        'Content-Type': 'application/json', // Set the content type here
+        'Content-Type': 'application/json',
       },
       body: jsonEncode({
         'firstName': firstnameController.text,
@@ -110,20 +110,23 @@ class SignupPage extends StatelessWidget {
       }),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 400) {
+      SnackbarHelper.showSnackbar(
+        context,
+        message: 'Please fill all the fields',
+      );
+    } else if (response.statusCode == 200) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
       );
       SnackbarHelper.showSnackbar(
         context,
-        title: 'Welcome Aboard!',
         message: 'Thank you for signing up. Start exploring our app now!',
       );
     } else {
       SnackbarHelper.showSnackbar(
         context,
-        title: 'Registration Failed',
         message: 'Unable to complete registration. Please try again later.',
       );
     }

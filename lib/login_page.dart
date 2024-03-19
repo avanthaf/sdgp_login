@@ -114,20 +114,23 @@ class LoginPage extends StatelessWidget {
       );
       SnackbarHelper.showSnackbar(
         context,
-        title: 'Login Successful',
         message: 'Welcome back! You have successfully logged in.',
+      );
+    } else if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty) {
+      SnackbarHelper.showSnackbar(
+        context,
+        message: 'Email address and password can\'t be empty',
       );
     } else if (response.statusCode == 401) {
       SnackbarHelper.showSnackbar(
         context,
-        title: 'Authentication Error',
         message:
-            'Invalid username or password. Please verify your login details and try again!',
+            'Invalid email address  or password. Please verify your login details and try again!',
       );
     } else {
       SnackbarHelper.showSnackbar(
         context,
-        title: 'Authentication Error',
         message:
             'An unexpected error occurred. Please contact the administrator .',
       );
