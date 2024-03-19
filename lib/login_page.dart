@@ -116,17 +116,17 @@ class LoginPage extends StatelessWidget {
         context,
         message: 'Welcome back! You have successfully logged in.',
       );
-    } else if (emailController.text.isEmpty ||
-        passwordController.text.isEmpty) {
-      SnackbarHelper.showSnackbar(
-        context,
-        message: 'Email address and password can\'t be empty',
-      );
     } else if (response.statusCode == 401) {
       SnackbarHelper.showSnackbar(
         context,
         message:
             'Invalid email address  or password. Please verify your login details and try again!',
+      );
+    } else if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty) {
+      SnackbarHelper.showSnackbar(
+        context,
+        message: 'Email address and password can\'t be empty',
       );
     } else {
       SnackbarHelper.showSnackbar(
