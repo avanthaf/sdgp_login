@@ -110,12 +110,7 @@ class SignupPage extends StatelessWidget {
       }),
     );
 
-    if (response.statusCode == 400) {
-      SnackbarHelper.showSnackbar(
-        context,
-        message: 'Please fill all the fields',
-      );
-    } else if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
@@ -123,6 +118,11 @@ class SignupPage extends StatelessWidget {
       SnackbarHelper.showSnackbar(
         context,
         message: 'Thank you for signing up. You may login now!',
+      );
+    } else if (response.statusCode == 500) {
+      SnackbarHelper.showSnackbar(
+        context,
+        message: 'Please fill all the fields',
       );
     } else {
       SnackbarHelper.showSnackbar(
