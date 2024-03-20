@@ -6,7 +6,6 @@ import 'package:sdgp_login/components/my_sizedbox.dart';
 import 'package:sdgp_login/components/my_snackbar.dart';
 import 'package:sdgp_login/components/my_textfield.dart';
 import 'package:sdgp_login/home_page.dart';
-import 'package:sdgp_login/pwrest_page.dart';
 import 'package:sdgp_login/signup_page.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -53,16 +52,6 @@ class LoginPage extends StatelessWidget {
                 controller: passwordController,
                 hintText: "Password",
                 obscureText: true,
-              ),
-              const MySizedBox(BoxHeight: 1),
-              MyGestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PWRestPage()),
-                  );
-                },
-                text: "Forgot Password?",
               ),
               const MySizedBox(BoxHeight: 4),
               MyButton(
