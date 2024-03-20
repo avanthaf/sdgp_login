@@ -122,7 +122,7 @@ class SignupPage extends StatelessWidget {
       );
       SnackbarHelper.showSnackbar(
         context,
-        message: 'Thank you for signing up. Start exploring our app now!',
+        message: 'Thank you for signing up. You may login now!',
       );
     } else {
       SnackbarHelper.showSnackbar(
